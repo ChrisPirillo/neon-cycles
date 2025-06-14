@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>Neon Cycles (TRON Nostalgia)</title>
+    <meta name="description" content="Total immersion! Challenge cunning CPUs in Neon Cycles, a thrilling TRON-inspired lightcycle game with maximum glowing trails.">
+    <link rel="canonical" href="https://pirillo.com/arcade/neon-cycles.html/">
+
+    <meta property="og:title" content="Neon Cycles: Immersive Black Edition - Max Glow">
+    <meta property="og:description" content="Full-screen, black-themed TRON-style lightcycle action with intensely glowing trails.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pirillo.com/arcade/neon-cycles.html/">
+    <meta property="og:image" content="https://pirillo.com/arcade/images/neon-cycles.png">
+    <meta property="og:image:alt" content="Neon Cycles game with maximum glowing trails in full-screen theme.">
+    <meta property="og:site_name" content="Pirillo.com Arcade">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ChrisPirillo">
+    <meta name="twitter:title" content="Neon Cycles">
+    <meta name="twitter:description" content="Experience total lightcycle immersion with super bright, maximum glowing trails.">
+    <meta name="twitter:image" content="https://pirillo.com/arcade/images/neon-cycles.png">
+    <meta name="twitter:image:alt" content="Gameplay of Neon Cycles black edition with maximum glowing trails.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@300&display=swap" as="style" onload="this.rel='stylesheet';this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@300&display=swap"></noscript>
+
+    <meta name="theme-color" content="#000000">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Neon Cycles: TRON Nostalgia",
+      "url": "https://pirillo.com/arcade/neon-cycles/",
+      "author": { "@type": "Person", "name": "Chris Pirillo" },
+      "image": "https://pirillo.com/arcade/images/neon-cycles.png",
+      "description": "A TRON-inspired lightcycle game with maximum glowing trails in a fully immersive interface, where players challenge multiple CPU opponents.",
+      "applicationCategory": "Game",
+      "operatingSystem": "All (Web Browser)",
+      "genre": ["Arcade game", "Action game"],
+      "playMode": "SinglePlayer",
+      "gamePlatform": ["PC", "Mobile", "Web"],
+      "keywords": "tron, lightcycle, html5 game, retro arcade, neon game, immersive game, black theme, player vs cpu, glowing trails, max glow",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Pirillo.com Arcade", "item": "https://pirillo.com/arcade/"},
+          {"@type": "ListItem", "position": 2, "name": "Neon Cycles", "item": "https://pirillo.com/arcade/neon-cycles.html"}
+        ]
+      }
+    }
+    </script>
+    <style>
+      :root {
+        --font-primary: 'Orbitron', sans-serif;
+        --font-secondary: 'Roboto', sans-serif;
+        --color-bg-dark: #000000;
+        --color-bg-medium: #101010; /* Modal box background */
+        --color-border: #333333;
+        --color-grid-lines: rgba(0, 255, 0, 0.1); /* Base alpha for grid, will be animated */
+        --color-text-primary: #eeeeee;
+        --color-text-secondary: #bbbbbb;
+        --color-modal-text: #cccccc;
+
+        /* Player Colors - Max Glow */
+        --player1-color: #E6FFFF; /* Head: Super bright cyan - Core */
+        --player1-glow: rgba(230, 255, 255, 1.0);   /* Head Glow: aura with transparency */
+        --player1-trail: rgba(0, 255, 255, 0.7);  /* Trail Body: semi-transparent, slightly more opaque */
+        --player1-trail-glow-color: rgba(0, 255, 255, 1.0); /* Trail Glow: more intense, fully opaque */
+        --player1-trail-glow-color-outer: rgba(0, 255, 255, 0.7); /* Outer, wider trail glow, more substantial */
+
+
+        /* CPU 1 Colors - Max Glow */
+        --cpu1-color: #FFD1FF;
+        --cpu1-glow: rgba(255, 209, 255, 1.0);
+        --cpu1-trail: rgba(255, 0, 255, 0.7);
+        --cpu1-trail-glow-color: rgba(255, 0, 255, 1.0);
+        --cpu1-trail-glow-color-outer: rgba(255, 0, 255, 0.7);
+
+        /* CPU 2 Colors - Max Glow */
+        --cpu2-color: #FFD1D1;
+        --cpu2-glow: rgba(255, 209, 209, 1.0);
+        --cpu2-trail: rgba(255, 0, 0, 0.7);
+        --cpu2-trail-glow-color: rgba(255, 0, 0, 1.0);
+        --cpu2-trail-glow-color-outer: rgba(255, 0, 0, 0.7);
+
+        /* CPU 3 Colors - Max Glow */
+        --cpu3-color: #D1FFD1;
+        --cpu3-glow: rgba(209, 255, 209, 1.0);
+        --cpu3-trail: rgba(0, 255, 0, 0.7);
+        --cpu3-trail-glow-color: rgba(0, 255, 0, 1.0);
+        --cpu3-trail-glow-color-outer: rgba(0, 255, 0, 0.7);
+
+        --accent-color: #ffee00;
+        --accent-glow: rgba(255, 238, 0, 0.8); /* Stronger accent glow */
+        --padding-base: 1rem;
+        --border-radius: 6px;
+        --transition-speed-fast: 0.2s;
+        --transition-speed-medium: 0.3s;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 100vw; height: 100vh; overflow: hidden;
+        background-color: var(--color-bg-dark); color: var(--color-text-primary);
+        font-family: var(--font-secondary); font-size: 16px;
+        -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        position: fixed;
+      }
+
+      #app-container {
+        width: 100%; height: 100%; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; position: relative;
+      }
+
+      #game-title-overlay {
+        font-family: var(--font-primary);
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 900;
+        color: var(--color-text-primary);
+        text-shadow: 0 0 10px var(--accent-glow), 0 0 25px var(--accent-glow), 0 0 40px var(--player1-glow);
+        letter-spacing: 3px; text-transform: uppercase;
+        white-space: nowrap;
+        margin-bottom: 2.5rem;
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        order: -1;
+      }
+      #game-title-overlay.visible-with-modal {
+        opacity: 1; visibility: visible;
+      }
+
+      #game-container {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: var(--color-bg-dark); overflow: hidden;
+        z-index: 1;
+      }
+
+      #gameCanvas { display: block; image-rendering: pixelated; outline: none; }
+
+      .game-ui {
+        position: absolute; top: 20px; width: 100%;
+        display: flex; justify-content: center;
+        font-family: var(--font-primary); font-size: clamp(1rem, 3vw, 1.5rem);
+        color: var(--color-text-secondary); z-index: 5;
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .game-ui.visible-game-over { opacity: 1; visibility: visible; }
+      #status-display { padding: 5px 10px; background-color: rgba(0,0,0,0.3); border-radius: var(--border-radius); }
+
+      .modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        z-index: 1000; opacity: 0; visibility: hidden;
+        transition: opacity var(--transition-speed-medium) ease, visibility var(--transition-speed-medium) ease;
+        padding: var(--padding-base);
+      }
+      .modal-overlay.active { opacity: 1; visibility: visible; }
+
+      .modal-content {
+        background-color: var(--color-bg-medium);
+        padding: clamp(1.5rem, 4vw, 2rem);
+        border-radius: var(--border-radius);
+        box-shadow: 0 0 25px rgba(0,0,0,0.6), 0 0 10px var(--accent-glow);
+        border: 1px solid var(--color-border);
+        text-align: center; max-width: 520px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative; /* Context for absolute positioned menu */
+        z-index: 1002;
+        order: 0;
+      }
+      .modal-content h2#modal-title-main {
+        font-family: var(--font-primary); font-size: clamp(1.8rem, 6vw, 2.8rem);
+        margin-bottom: var(--padding-base); color: var(--accent-color);
+        text-shadow: 0 0 8px var(--accent-glow);
+      }
+      .modal-content p#modal-description-main {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        margin-bottom: 1.5rem; color: var(--color-modal-text);
+        line-height: 1.5; font-weight: 300;
+      }
+      .pirillo-link {
+        color: var(--accent-color);
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .pirillo-link:hover {
+        text-shadow: 0 0 5px var(--accent-glow);
+      }
+
+      #chris-pirillo-menu {
+        display: none;
+        position: absolute;
+        background-color: var(--color-bg-medium);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        z-index: 1005;
+        min-width: 220px;
+        padding: calc(var(--padding-base) / 2) 0;
+      }
+      #chris-pirillo-menu a {
+        display: block;
+        font-family: var(--font-secondary);
+        color: var(--color-text-secondary);
+        padding: clamp(0.5rem, 1.8vw, 0.75rem) clamp(0.8rem, 2.5vw, 1.2rem);
+        text-decoration: none;
+        font-size: clamp(0.9rem, 2.2vw, 1rem);
+        text-align: left;
+        transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast);
+        white-space: nowrap;
+      }
+      #chris-pirillo-menu a:hover,
+      #chris-pirillo-menu a:focus-visible {
+        background-color: var(--accent-color);
+        color: #000000;
+      }
+
+      button, .button {
+        font-family: var(--font-primary); background-color: var(--accent-color); color: #000000;
+        border: none; padding: clamp(0.7em, 2.2vw, 1em) clamp(1.4em, 4.5vw, 2em);
+        border-radius: var(--border-radius); font-size: clamp(1rem, 3.2vw, 1.3rem);
+        font-weight: 700; text-transform: uppercase; cursor: pointer;
+        transition: all var(--transition-speed-fast) ease-in-out;
+        box-shadow: 0 0 12px var(--accent-glow), inset 0 -2px 4px rgba(0,0,0,0.2);
+        outline-offset: 3px;
+        margin-top: 0.5rem;
+      }
+      button:hover, .button:hover, button:focus-visible, .button:focus-visible {
+        background-color: #fff;
+        box-shadow: 0 0 18px var(--accent-glow), 0 0 30px var(--accent-glow), inset 0 -2px 4px rgba(0,0,0,0.1);
+        transform: translateY(-2px) scale(1.03);
+      }
+      button:active, .button:active {
+        transform: translateY(0px) scale(1);
+        box-shadow: 0 0 8px var(--accent-glow), inset 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      #touch-controls { display: none !important; }
+
+      @keyframes pulse { 0% {transform:scale(1); box-shadow:0 0 8px var(--accent-glow);} 50% {transform:scale(1.05); box-shadow:0 0 18px var(--accent-glow), 0 0 30px var(--accent-glow);} 100% {transform:scale(1); box-shadow:0 0 8px var(--accent-glow);} }
+      .pulse-button { animation: pulse 1.8s infinite ease-in-out; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <div id="game-container">
+            <canvas id="gameCanvas" tabindex="0">Your browser does not support HTML5 canvas.</canvas>
+        </div>
+
+        <div class="game-ui">
+            <div id="status-display" role="status"></div>
+        </div>
+
+        <div id="game-modal" class="modal-overlay" role="dialog" aria-labelledby="modal-title-main">
+            <h1 id="game-title-overlay">Neon Cycles</h1>
+            <div class="modal-content">
+                <h2 id="modal-title-main"></h2>
+                <p id="modal-description-main">Fight for the user (like <span id="chris-pirillo-trigger" class="pirillo-link">@ChrisPirillo</span>)!</p>
+                <button id="start-game-button" class="button pulse-button">Start Game</button>
+                <div id="chris-pirillo-menu">
+                    <a href="https://chrispirillo.bio.link/" target="_blank">Follow Chris</a>
+                    <a href="/" target="_blank">Hire Chris</a>
+                    <a href="/" target="_blank">Meet Chris</a>
+                    <a href="https://chrispirillo.substack.com/" target="_blank">Read Chris</a>
+                    <a href="https://pirillo.com/arcade/" target="_blank">Play with Chris</a>
+                    <a href="https://www.linkedin.com/in/chrispirillo/" target="_blank">Connect with Chris</a>
+                    <a href="https://discord.com/invite/XRBTM8sAMX" target="_blank">Chat with Chris</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      (function() { /* requestAnimationFrame polyfill */
+          var lastTime = 0; var vendors = ['ms', 'moz', 'webkit', 'o'];
+          for(var x=0; x<vendors.length && !window.requestAnimationFrame; ++x) { window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame']; window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame']; }
+          if (!window.requestAnimationFrame) window.requestAnimationFrame = function(callback) { var currTime = new Date().getTime(); var timeToCall = Math.max(0, 16-(currTime-lastTime)); var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall); lastTime = currTime+timeToCall; return id; };
+          if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function(id) { clearTimeout(id); };
+      }());
+
+      document.addEventListener('DOMContentLoaded', () => {
+        'use strict';
+        const DEBUG_MODE = false;
+
+        // DOM Elements
+        const gameTitleOverlay = document.getElementById('game-title-overlay');
+        const gameCanvas = document.getElementById('gameCanvas');
+        const ctx = gameCanvas.getContext('2d');
+        const gameContainer = document.getElementById('game-container');
+        const statusDisplay = document.getElementById('status-display');
+        const gameUIContainer = document.querySelector('.game-ui');
+
+        const gameModal = document.getElementById('game-modal');
+        const modalContent = document.querySelector('.modal-content');
+        const modalTitleMain = document.getElementById('modal-title-main');
+        const modalDescriptionMain = document.getElementById('modal-description-main');
+        const startGameButton = document.getElementById('start-game-button');
+
+        const pirilloMenu = document.getElementById('chris-pirillo-menu');
+
+        // Game Constants
+        const GRID_SIZE = 12;
+        const INITIAL_GAME_SPEED = 120;
+        const MIN_GAME_SPEED = 50;
+        const SPEED_INCREASE_INTERVAL = 60000;
+        const SPEED_DECREMENT = 10;
+        const FIRST_GAME_LOOP_DELAY = 100;
+        const NUM_CPUS = 3;
+
+        // Game State Variables
+        let currentTickSpeed = INITIAL_GAME_SPEED;
+        let gameplayTimeTrackerInterval = null;
+        let timeForNextSpeedIncrease = SPEED_INCREASE_INTERVAL;
+
+        let audioCtx;
+        let modalGridAnimationId = null;
+        let modalGridAnimationTime = 0;
+
+
+        // Color Variables (fetched from CSS)
+        let COLOR_BG_DARK, COLOR_GRID_LINES_BASE_RGBA;
+
+        const CPU_PLAYER_DEFINITIONS = [
+            { headVar: '--cpu1-color', trailVar: '--cpu1-trail', glowVar: '--cpu1-glow', trailGlowVar: '--cpu1-trail-glow-color', trailGlowOuterVar: '--cpu1-trail-glow-color-outer' },
+            { headVar: '--cpu2-color', trailVar: '--cpu2-trail', glowVar: '--cpu2-glow', trailGlowVar: '--cpu2-trail-glow-color', trailGlowOuterVar: '--cpu2-trail-glow-color-outer' },
+            { headVar: '--cpu3-color', trailVar: '--cpu3-trail', glowVar: '--cpu3-glow', trailGlowVar: '--cpu3-trail-glow-color', trailGlowOuterVar: '--cpu3-trail-glow-color-outer' },
+        ];
+        let cpuConfigs = [];
+
+        // Canvas and Grid Dimensions
+        let canvasWidth, canvasHeight, gridWidth, gridHeight;
+
+        // Game Entities
+        let player1;
+        let cpus = [];
+        let trails;
+
+        // Game Control
+        let gameLoopTimeout;
+        let isGameOver = false;
+        let gameStarted = false;
+        let nextPlayerDirection = null;
+
+        // --- Audio Function ---
+        function playCrashSound() {
+            if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (!audioCtx) {
+                if (DEBUG_MODE) console.warn("Web Audio API not supported.");
+                return;
+            }
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+
+            oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.15);
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.15);
+
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.15);
+        }
+
+        // --- Global Key Handler ---
+        function globalGameKeyHandler(e) {
+            if (DEBUG_MODE) console.log(`--- globalGameKeyHandler --- Key: ${e.key}`);
+
+            if (gameModal.classList.contains('active')) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const currentPirilloTrigger = document.getElementById('chris-pirillo-trigger');
+                    if (pirilloMenu.style.display !== 'none' &&
+                        (pirilloMenu.contains(document.activeElement) || document.activeElement === currentPirilloTrigger || Array.from(pirilloMenu.querySelectorAll('a')).includes(document.activeElement) )) {
+                       return;
+                    }
+                    Core.startGame();
+                }
+                return;
+            }
+
+            if (isGameOver || !player1 || player1.isCrashed) {
+                if (DEBUG_MODE) console.log("Key ignored: game over or player inactive.");
+                return;
+            }
+
+            let newDx = null, newDy = null;
+            const key = e.key.toLowerCase();
+
+            if (key === 'arrowup' || key === 'w') { newDy = -1; newDx = 0; }
+            else if (key === 'arrowdown' || key === 's') { newDy = 1; newDx = 0; }
+            else if (key === 'arrowleft' || key === 'a') { newDx = -1; newDy = 0; }
+            else if (key === 'arrowright' || key === 'd') { newDx = 1; newDy = 0; }
+            else {
+                 if (DEBUG_MODE) console.log("Not a game control key.");
+                 return;
+            }
+
+            if (newDx !== null && newDy !== null) {
+                e.preventDefault();
+                nextPlayerDirection = { dx: newDx, dy: newDy };
+                if (DEBUG_MODE) console.log(`Player direction queued: dx=${newDx}, dy=${newDy}`);
+            }
+        }
+        window.addEventListener('keydown', globalGameKeyHandler, true);
+
+
+        // --- Core Game Logic Module ---
+        const Core = {
+            fetchInitialColors() {
+                COLOR_BG_DARK = getComputedStyle(document.documentElement).getPropertyValue('--color-bg-dark').trim();
+                const gridLinesCss = getComputedStyle(document.documentElement).getPropertyValue('--color-grid-lines').trim();
+                const match = gridLinesCss.match(/rgba?\((\d+,\s*\d+,\s*\d+)(?:,\s*([\d\.]+))?\)/);
+                if (match) {
+                    COLOR_GRID_LINES_BASE_RGBA = { rgb: match[1], alpha: parseFloat(match[2] || 1) };
+                } else {
+                    COLOR_GRID_LINES_BASE_RGBA = { rgb: '0, 255, 0', alpha: 0.1 };
+                    if(DEBUG_MODE) console.warn("CSS --color-grid-lines not parsed correctly, using fallback.");
+                }
+
+                cpuConfigs = CPU_PLAYER_DEFINITIONS.slice(0, NUM_CPUS).map(def => ({
+                    color: getComputedStyle(document.documentElement).getPropertyValue(def.headVar).trim(),
+                    trailColor: getComputedStyle(document.documentElement).getPropertyValue(def.trailVar).trim(),
+                    glow: getComputedStyle(document.documentElement).getPropertyValue(def.glowVar).trim(),
+                    trailGlowColor: getComputedStyle(document.documentElement).getPropertyValue(def.trailGlowVar).trim(),
+                    trailGlowColorOuter: getComputedStyle(document.documentElement).getPropertyValue(def.trailGlowOuterVar).trim() // Fetch new outer trail glow color
+                }));
+                if (DEBUG_MODE) console.log("Fetched initial colors and CPU configs:", cpuConfigs);
+            },
+            initCanvas() {
+                canvasWidth = gameContainer.clientWidth; canvasHeight = gameContainer.clientHeight;
+                gameCanvas.width = canvasWidth; gameCanvas.height = canvasHeight;
+                gridWidth = Math.floor(canvasWidth / GRID_SIZE); gridHeight = Math.floor(canvasHeight / GRID_SIZE);
+                if (DEBUG_MODE) console.log(`Canvas initialized: ${canvasWidth}x${canvasHeight}, Grid: ${gridWidth}x${gridHeight}`);
+            },
+            resetGame() {
+                if (DEBUG_MODE) console.log("Core.resetGame");
+                clearTimeout(gameLoopTimeout);
+                clearInterval(gameplayTimeTrackerInterval);
+                currentTickSpeed = INITIAL_GAME_SPEED;
+                timeForNextSpeedIncrease = SPEED_INCREASE_INTERVAL;
+
+                isGameOver = false; gameStarted = false; nextPlayerDirection = null;
+                trails = []; cpus = [];
+
+                const startMargin = Math.max(2, Math.min(5, Math.floor(gridWidth / 10), Math.floor(gridHeight / 10)));
+                player1 = {
+                    x: Math.max(startMargin, Math.floor(gridWidth / 4)), y: Math.floor(gridHeight / 2),
+                    dx: 1, dy: 0,
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--player1-color').trim(),
+                    trailColor: getComputedStyle(document.documentElement).getPropertyValue('--player1-trail').trim(),
+                    glow: getComputedStyle(document.documentElement).getPropertyValue('--player1-glow').trim(),
+                    trailGlowColor: getComputedStyle(document.documentElement).getPropertyValue('--player1-trail-glow-color').trim(),
+                    trailGlowColorOuter: getComputedStyle(document.documentElement).getPropertyValue('--player1-trail-glow-color-outer').trim(),
+                    id: 'player', isCrashed: false,
+                    trailProcessedForCrash: false
+                };
+                player1.x = Math.max(0, Math.min(player1.x, gridWidth - 1));
+                player1.y = Math.max(0, Math.min(player1.y, gridHeight - 1));
+                trails.push({ x: player1.x, y: player1.y, ownerId: player1.id });
+
+                const cpuStartPositions = [
+                    { xFn: gw => Math.min(gw - 1 - startMargin, Math.floor(gw * 3 / 4)), yFn: gh => Math.floor(gh / 2), dx: -1, dy: 0 },
+                    { xFn: gw => Math.floor(gw / 2), yFn: gh => Math.max(startMargin, Math.floor(gh / 4)), dx: 0, dy: 1 },
+                    { xFn: gw => Math.floor(gw / 2), yFn: gh => Math.min(gh - 1 - startMargin, Math.floor(gh * 3 / 4)), dx: 0, dy: -1 },
+                    { xFn: gw => Math.max(startMargin, Math.floor(gw / 4)), yFn: gh => Math.floor(gh * 0.3), dx: 1, dy: 0 },
+                    { xFn: gw => Math.min(gw-1-startMargin, Math.floor(gw * 0.75)), yFn: gh => Math.floor(gh * 0.7), dx: -1, dy: 0},
+                ];
+                let usedPositions = [{x: player1.x, y: player1.y}];
+
+                for (let i = 0; i < NUM_CPUS; i++) {
+                    const config = cpuConfigs[i % cpuConfigs.length];
+                    const posData = cpuStartPositions[i % cpuStartPositions.length];
+                    let cpuX = posData.xFn(gridWidth);
+                    let cpuY = posData.yFn(gridHeight);
+                    let attempts = 0;
+                    while(usedPositions.some(p => p.x === cpuX && p.y === cpuY) && attempts < gridWidth * gridHeight) {
+                        cpuX = (cpuX + i + 1) % gridWidth;
+                        cpuY = (cpuY + i + 1) % gridHeight;
+                        attempts++;
+                    }
+                    if (attempts >= gridWidth * gridHeight && DEBUG_MODE) console.warn("Could not find unique start for CPU", i+1);
+
+                    let cpu = {
+                        x: Math.max(0, Math.min(cpuX, gridWidth - 1)),
+                        y: Math.max(0, Math.min(cpuY, gridHeight - 1)),
+                        dx: posData.dx, dy: posData.dy,
+                        color: config.color,
+                        trailColor: config.trailColor,
+                        glow: config.glow,
+                        trailGlowColor: config.trailGlowColor,
+                        trailGlowColorOuter: config.trailGlowColorOuter,
+                        id: `cpu${i+1}`, isCrashed: false,
+                        trailProcessedForCrash: false
+                    };
+                    cpus.push(cpu);
+                    usedPositions.push({x: cpu.x, y: cpu.y});
+                    trails.push({ x: cpu.x, y: cpu.y, ownerId: cpu.id });
+                }
+                if (DEBUG_MODE) console.log("Player and CPUs initialized:", player1, cpus);
+                Renderer.redrawAll();
+            },
+            startGame() {
+                if (DEBUG_MODE) console.log("Core.startGame called.");
+                if (modalGridAnimationId) {
+                    cancelAnimationFrame(modalGridAnimationId);
+                    modalGridAnimationId = null;
+                }
+                gameStarted = false; isGameOver = false;
+                Core.initCanvas(); Core.resetGame();
+                gameStarted = true; isGameOver = false;
+
+                UI.hideModal(); UI.hideGameUI();
+                gameCanvas.focus();
+
+                gameplayTimeTrackerInterval = setInterval(() => {
+                    if (!isGameOver && gameStarted) {
+                        timeForNextSpeedIncrease -= 1000;
+                        if (timeForNextSpeedIncrease <= 0) {
+                            currentTickSpeed = Math.max(MIN_GAME_SPEED, currentTickSpeed - SPEED_DECREMENT);
+                            if (DEBUG_MODE) console.log("SPEED INCREASED! New tick speed:", currentTickSpeed);
+                            timeForNextSpeedIncrease = SPEED_INCREASE_INTERVAL;
+                        }
+                    }
+                }, 1000);
+
+                clearTimeout(gameLoopTimeout);
+                Renderer.drawGridBackground();
+                gameLoopTimeout = setTimeout(() => {
+                    if (!isGameOver && gameStarted) {
+                       if (DEBUG_MODE) console.log("Delayed game loop starting now.");
+                       Core.gameLoop();
+                    }
+                }, FIRST_GAME_LOOP_DELAY);
+            },
+            gameLoop() {
+                if (isGameOver || !gameStarted) {
+                    if (DEBUG_MODE) console.log(`Game loop aborted. isGameOver: ${isGameOver}, gameStarted: ${gameStarted}`);
+                    return;
+                }
+                let crashedThisTick = false;
+
+                // --- Player Update ---
+                if (player1 && !player1.isCrashed) {
+                    if (nextPlayerDirection) {
+                        if (!((nextPlayerDirection.dx !== 0 && player1.dx === -nextPlayerDirection.dx && player1.dx !== 0) ||
+                              (nextPlayerDirection.dy !== 0 && player1.dy === -nextPlayerDirection.dy && player1.dy !== 0))) {
+                            player1.dx = nextPlayerDirection.dx;
+                            player1.dy = nextPlayerDirection.dy;
+                        }
+                        nextPlayerDirection = null;
+                    }
+                    const p1PrevX = player1.x, p1PrevY = player1.y;
+                    player1.x += player1.dx; player1.y += player1.dy;
+                    trails.push({ x: p1PrevX, y: p1PrevY, ownerId: player1.id });
+                }
+
+                // --- CPUs Update ---
+                cpus.forEach(cpu => {
+                    if (cpu.isCrashed) return;
+                    const cpuPrevX = cpu.x, cpuPrevY = cpu.y;
+                    cpu.x += cpu.dx; cpu.y += cpu.dy;
+                    trails.push({ x: cpuPrevX, y: cpuPrevY, ownerId: cpu.id });
+                });
+
+                // --- Collision Detection ---
+                if (player1 && !player1.isCrashed) {
+                    if (Core.checkCollision(player1)) {
+                        player1.isCrashed = true;
+                        crashedThisTick = true;
+                        if (DEBUG_MODE) console.log("Player crashed!");
+                    }
+                }
+
+                cpus.forEach(cpu => {
+                    if (cpu.isCrashed) return;
+                    if (Core.checkCollision(cpu)) {
+                        cpu.isCrashed = true;
+                        crashedThisTick = true;
+                        if (DEBUG_MODE) console.log(`${cpu.id} crashed!`);
+                    }
+                });
+
+                // Head-on collisions
+                if (player1 && !player1.isCrashed) {
+                    cpus.forEach(cpu => {
+                        if (!cpu.isCrashed && player1.x === cpu.x && player1.y === cpu.y) {
+                            player1.isCrashed = true; cpu.isCrashed = true; crashedThisTick = true;
+                            if (DEBUG_MODE) console.log(`Head-on: Player and ${cpu.id}`);
+                        }
+                    });
+                }
+                for (let i = 0; i < cpus.length; i++) {
+                    if (cpus[i].isCrashed) continue;
+                    for (let j = i + 1; j < cpus.length; j++) {
+                        if (cpus[j].isCrashed) continue;
+                        if (cpus[i].x === cpus[j].x && cpus[i].y === cpus[j].y) {
+                            cpus[i].isCrashed = true; cpus[j].isCrashed = true; crashedThisTick = true;
+                            if (DEBUG_MODE) console.log(`Head-on: ${cpus[i].id} and ${cpus[j].id}`);
+                        }
+                    }
+                }
+
+                // --- Process Crashes and Trails ---
+                if (crashedThisTick) {
+                    playCrashSound();
+                    if (player1.isCrashed && !player1.trailProcessedForCrash) {
+                        trails = trails.filter(segment => segment.ownerId !== player1.id);
+                        player1.trailProcessedForCrash = true;
+                        if(DEBUG_MODE) console.log(`Player ${player1.id}'s trail removed.`);
+                    }
+                    cpus.forEach(cpu => {
+                        if (cpu.isCrashed && !cpu.trailProcessedForCrash) {
+                            trails = trails.filter(segment => segment.ownerId !== cpu.id);
+                            cpu.trailProcessedForCrash = true;
+                            if(DEBUG_MODE) console.log(`CPU ${cpu.id}'s trail removed.`);
+                        }
+                    });
+                }
+
+                // --- Redraw ---
+                Renderer.redrawAll();
+
+                // --- Game Over Logic ---
+                const playerIsActive = player1 && !player1.isCrashed;
+                const activeCpus = cpus.filter(c => !c.isCrashed);
+                const numberOfActiveCpus = activeCpus.length;
+                let gameEndMessage = null;
+
+                if (playerIsActive) {
+                    if (numberOfActiveCpus === 0) {
+                        gameEndMessage = "Player Wins!";
+                    }
+                } else {
+                    if (numberOfActiveCpus === 0) {
+                        gameEndMessage = "It's a Tie!";
+                    } else if (numberOfActiveCpus === 1) {
+                        gameEndMessage = `${activeCpus[0].id.toUpperCase()} Wins!`;
+                    } else {
+                        gameEndMessage = "CPUs Win!";
+                    }
+                }
+
+                if (gameEndMessage) {
+                    Core.endGame(gameEndMessage);
+                } else {
+                    AI.updateCPUs();
+                    gameLoopTimeout = setTimeout(Core.gameLoop, currentTickSpeed);
+                }
+            },
+            checkCollision(entity) {
+                if (entity.x < 0 || entity.x >= gridWidth || entity.y < 0 || entity.y >= gridHeight) {
+                    if (DEBUG_MODE) console.log(`${entity.id} hit a wall at (${entity.x},${entity.y})`);
+                    return true;
+                }
+                for (let i = 0; i < trails.length; i++) {
+                    const segment = trails[i];
+                    if (segment.x === entity.x && segment.y === entity.y) {
+                       if (DEBUG_MODE) console.log(`${entity.id} hit a trail at (${entity.x},${entity.y}), trail owner: ${segment.ownerId}`);
+                       return true;
+                    }
+                }
+                return false;
+            },
+            endGame(message) {
+                if (DEBUG_MODE) console.log("Core.endGame called with message:", message);
+                isGameOver = true; gameStarted = false;
+                clearTimeout(gameLoopTimeout);
+                clearInterval(gameplayTimeTrackerInterval);
+                UI.showGameUI(); statusDisplay.textContent = message;
+                UI.showModalGameOver(message);
+            }
+        };
+
+        // --- Renderer Module ---
+        const Renderer = {
+            drawGridBackground(alphaOverride = null) {
+                if (!ctx) {
+                    if (DEBUG_MODE) console.error("Canvas context (ctx) is not available in drawGridBackground.");
+                    return;
+                }
+                ctx.fillStyle = COLOR_BG_DARK || '#000000';
+                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                let currentGridColor;
+                if (COLOR_GRID_LINES_BASE_RGBA) {
+                    const alphaToUse = alphaOverride !== null ? alphaOverride : COLOR_GRID_LINES_BASE_RGBA.alpha;
+                    currentGridColor = `rgba(${COLOR_GRID_LINES_BASE_RGBA.rgb}, ${alphaToUse})`;
+                } else {
+                    currentGridColor = 'rgba(0,255,0,0.1)';
+                    if(DEBUG_MODE) console.warn("COLOR_GRID_LINES_BASE_RGBA undefined in drawGridBackground, using fallback.");
+                }
+
+                ctx.strokeStyle = currentGridColor;
+                ctx.lineWidth = 0.5;
+                for (let x = 0; x <= gridWidth; x++) { ctx.beginPath(); ctx.moveTo(x * GRID_SIZE, 0); ctx.lineTo(x * GRID_SIZE, canvasHeight); ctx.stroke(); }
+                for (let y = 0; y <= gridHeight; y++) { ctx.beginPath(); ctx.moveTo(0, y * GRID_SIZE); ctx.lineTo(canvasWidth, y * GRID_SIZE); ctx.stroke(); }
+            },
+            drawPlayer(player) {
+                if (!player || player.isCrashed) return;
+                ctx.globalAlpha = 1.0;
+                ctx.fillStyle = player.color;
+                ctx.shadowColor = player.glow;
+                ctx.shadowBlur = 30; // Increased head glow further
+                ctx.fillRect(player.x * GRID_SIZE, player.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+                ctx.shadowBlur = 0;
+                ctx.shadowColor = 'rgba(0,0,0,0)';
+                ctx.globalAlpha = 1.0;
+            },
+            drawTrailSegment(x, y, trailColor, trailGlowColor, trailGlowColorOuter) {
+                const trailX = x * GRID_SIZE;
+                const trailY = y * GRID_SIZE;
+
+                ctx.globalAlpha = 1.0; // Ensure subsequent operations are not affected by trail's alpha
+
+                // 1. Outer, wider glow
+                ctx.shadowColor = trailGlowColorOuter;
+                ctx.shadowBlur = 35; // Significantly larger blur for the outer glow
+                ctx.fillStyle = trailGlowColor; 
+                ctx.fillRect(trailX, trailY, GRID_SIZE, GRID_SIZE);
+
+
+                // 2. Primary, brighter glow
+                ctx.shadowColor = trailGlowColor;
+                ctx.shadowBlur = 20; // Increased blur for primary trail glow
+                ctx.fillStyle = trailColor;
+                ctx.fillRect(trailX, trailY, GRID_SIZE, GRID_SIZE);
+
+                // 3. Core trail segment (no shadow for this part, it's the "light source")
+                ctx.shadowBlur = 0;
+                ctx.shadowColor = 'rgba(0,0,0,0)';
+                ctx.fillStyle = trailColor; 
+                ctx.fillRect(trailX, trailY, GRID_SIZE, GRID_SIZE);
+
+                // Reset context properties
+                ctx.shadowBlur = 0;
+                ctx.shadowColor = 'rgba(0,0,0,0)';
+                ctx.globalAlpha = 1.0;
+            },
+            redrawAll() {
+                Renderer.clearCanvas();
+                Renderer.drawGridBackground();
+                if (trails) {
+                    trails.forEach(segment => {
+                        let ownerObject;
+                        if (segment.ownerId === 'player') ownerObject = player1;
+                        else ownerObject = cpus.find(c => c.id === segment.ownerId);
+
+                        if (ownerObject) {
+                             Renderer.drawTrailSegment(segment.x, segment.y, ownerObject.trailColor, ownerObject.trailGlowColor, ownerObject.trailGlowColorOuter);
+                        }
+                    });
+                }
+                Renderer.drawPlayer(player1);
+                cpus.forEach(Renderer.drawPlayer);
+            },
+            clearCanvas(){
+                if (!ctx) {
+                     if (DEBUG_MODE) console.error("Canvas context (ctx) is not available in clearCanvas.");
+                     return;
+                }
+                ctx.clearRect(0,0,canvasWidth, canvasHeight);
+            }
+        };
+
+        // --- Input Handler for Touch ---
+        const InputHandler = {
+            setPlayerDirection(dx, dy) {
+                if (!player1 || isGameOver || player1.isCrashed) return;
+                nextPlayerDirection = { dx: dx, dy: dy };
+                if (DEBUG_MODE) console.log(`Touch: Player direction queued: dx=${dx}, dy=${dy}`);
+            }
+        };
+
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            let touchStartX = 0, touchStartY = 0;
+            gameCanvas.addEventListener('touchstart', (e) => { if (e.touches.length === 1) { e.preventDefault(); touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;}}, { passive: false });
+            gameCanvas.addEventListener('touchmove', (e) => { if (e.touches.length === 1) e.preventDefault(); }, { passive: false });
+            gameCanvas.addEventListener('touchend', (e) => {
+                if (!gameStarted || isGameOver || e.changedTouches.length === 0 || !player1 || player1.isCrashed) return;
+                const touchEndX = e.changedTouches[0].clientX; const touchEndY = e.changedTouches[0].clientY;
+                const diffX = touchEndX - touchStartX; const diffY = touchEndY - touchStartY;
+                const threshold = 20;
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > threshold) InputHandler.setPlayerDirection(diffX > 0 ? 1 : -1, 0);
+                } else {
+                    if (Math.abs(diffY) > threshold) InputHandler.setPlayerDirection(0, diffY > 0 ? 1 : -1);
+                }
+            }, { passive: false });
+        }
+
+
+        // --- AI Module for CPUs ---
+        const AI = {
+            updateCPUs() {
+                cpus.forEach(cpu => {
+                    if (!cpu || cpu.isCrashed) return;
+
+                    const directions = [ { dx: 0, dy: -1 }, { dx: 0, dy: 1 }, { dx: -1, dy: 0 }, { dx: 1, dy: 0 } ];
+                    let possibleMoves = [];
+
+                    for (const dir of directions) {
+                        if (cpu.dx === -dir.dx && cpu.dy === -dir.dy && (cpu.dx !== 0 || cpu.dy !== 0)) continue;
+
+                        const nextX = cpu.x + dir.dx;
+                        const nextY = cpu.y + dir.dy;
+
+                        if (!Core.checkCollision({ id: cpu.id, x: nextX, y: nextY })) {
+                           let score = 100;
+                           if (dir.dx === cpu.dx && dir.dy === cpu.dy) score += 30;
+
+                           let openSpace = 0;
+                           for (let i = 1; i <= 4; i++) {
+                               if (!Core.checkCollision({id: cpu.id, x: cpu.x + dir.dx * i, y: cpu.y + dir.dy * i })) openSpace++; else break;
+                           }
+                           score += openSpace * 25;
+
+                           if (player1 && !player1.isCrashed) {
+                               const distToPlayer = Math.abs(nextX - player1.x) + Math.abs(nextY - player1.y);
+                               if (distToPlayer < 5 && openSpace < 2) score -= (5 - distToPlayer) * 15;
+                               else if (distToPlayer > 10 && openSpace > 2) score += 10;
+                           } else if (openSpace > 2) {
+                                score += 20;
+                           }
+                           cpus.forEach(otherCpu => {
+                               if (otherCpu.id === cpu.id || otherCpu.isCrashed) return;
+                               const distToOtherCpu = Math.abs(nextX - otherCpu.x) + Math.abs(nextY - otherCpu.y);
+                               if (distToOtherCpu < 3) score -= (3 - distToOtherCpu) * 20;
+                           });
+
+                           possibleMoves.push({ ...dir, score });
+                        }
+                    }
+
+                    if (possibleMoves.length > 0) {
+                        possibleMoves.sort((a, b) => b.score - a.score);
+                        cpu.dx = possibleMoves[0].dx;
+                        cpu.dy = possibleMoves[0].dy;
+                        if (DEBUG_MODE) console.log(`${cpu.id} chose move: dx=${cpu.dx}, dy=${cpu.dy} (Score: ${possibleMoves[0].score})`);
+                    } else {
+                        if (DEBUG_MODE) console.log(`${cpu.id} has no safe moves!`);
+                    }
+                });
+            }
+        };
+
+        // --- Modal Background Animation ---
+        function modalBackgroundAnimationLoop() {
+            if (!gameModal.classList.contains('active') || gameStarted) {
+                if (modalGridAnimationId) {
+                    cancelAnimationFrame(modalGridAnimationId);
+                    modalGridAnimationId = null;
+                    if (!gameStarted && !gameModal.classList.contains('active')) {
+                        Renderer.drawGridBackground();
+                    }
+                }
+                return;
+            }
+            if (!COLOR_GRID_LINES_BASE_RGBA) {
+                 if(DEBUG_MODE) console.error("modalBackgroundAnimationLoop: COLOR_GRID_LINES_BASE_RGBA is undefined.");
+                 Renderer.drawGridBackground(0.1);
+                 modalGridAnimationId = requestAnimationFrame(modalBackgroundAnimationLoop);
+                 return;
+            }
+            modalGridAnimationTime += 0.020;
+            const baseAlpha = COLOR_GRID_LINES_BASE_RGBA.alpha || 0.1;
+            const pulseRange = baseAlpha * 0.75;
+            const currentAlpha = baseAlpha + (Math.sin(modalGridAnimationTime * 1.2) * pulseRange);
+            Renderer.drawGridBackground(Math.max(0.02, Math.min(baseAlpha + pulseRange, currentAlpha)));
+            modalGridAnimationId = requestAnimationFrame(modalBackgroundAnimationLoop);
+        }
+
+
+        // --- UI Module (Modals, etc.) ---
+        const UI = {
+            init() {
+                if(DEBUG_MODE) console.log("UI.init started");
+                startGameButton.addEventListener('click', () => {
+                    if (pirilloMenu.style.display !== 'none') {
+                        pirilloMenu.style.display = 'none';
+                    }
+                    Core.startGame();
+                });
+
+                modalDescriptionMain.addEventListener('click', (event) => {
+                    const clickedPirilloTrigger = event.target.closest('#chris-pirillo-trigger');
+                    if (clickedPirilloTrigger && pirilloMenu) {
+                        event.stopPropagation();
+                        const isVisible = pirilloMenu.style.display !== 'none';
+
+                        if (isVisible) {
+                            pirilloMenu.style.display = 'none';
+                        } else {
+                            const triggerRect = clickedPirilloTrigger.getBoundingClientRect();
+                            const modalContentRect = modalContent.getBoundingClientRect();
+
+                            let top = triggerRect.bottom - modalContentRect.top + 5;
+                            let left = triggerRect.left - modalContentRect.left;
+
+                            const menuWidth = pirilloMenu.offsetWidth || parseFloat(getComputedStyle(pirilloMenu).minWidth) || 200;
+                            if (left + menuWidth > modalContentRect.width - 10) {
+                                left = modalContentRect.width - menuWidth - 10;
+                            }
+                            left = Math.max(10, left);
+
+                            pirilloMenu.style.left = `${left}px`;
+                            pirilloMenu.style.top = `${top}px`;
+                            pirilloMenu.style.display = 'block';
+                        }
+                        if (DEBUG_MODE) console.log("Pirillo menu toggled:", pirilloMenu.style.display);
+                    }
+                });
+
+                document.addEventListener('click', (event) => {
+                    const currentDynamicPirilloTrigger = document.getElementById('chris-pirillo-trigger');
+                    if (pirilloMenu.style.display !== 'none' &&
+                        !pirilloMenu.contains(event.target) &&
+                        event.target !== currentDynamicPirilloTrigger) {
+                        pirilloMenu.style.display = 'none';
+                        if (DEBUG_MODE) console.log("Pirillo menu closed by clicking outside.");
+                    }
+                });
+
+                pirilloMenu.querySelectorAll('a').forEach(button => {
+                    button.addEventListener('keydown', (e) => {
+                         if (e.key === 'Enter' || e.key === ' ') e.stopPropagation();
+                    });
+                });
+
+                window.addEventListener('resize', () => {
+                    const wasModalAnimationRunning = !!modalGridAnimationId;
+                    if (modalGridAnimationId) {
+                        cancelAnimationFrame(modalGridAnimationId);
+                        modalGridAnimationId = null;
+                    }
+
+                    Core.initCanvas();
+
+                    if (gameStarted) {
+                        Renderer.redrawAll();
+                    } else if (gameModal.classList.contains('active')) {
+                        if (wasModalAnimationRunning || !modalGridAnimationId) {
+                            modalGridAnimationTime = 0;
+                            modalBackgroundAnimationLoop();
+                        }
+                    } else {
+                        Renderer.drawGridBackground();
+                    }
+
+                    const currentDynamicPirilloTrigger = document.getElementById('chris-pirillo-trigger');
+                    if (currentDynamicPirilloTrigger && pirilloMenu.style.display !== 'none') {
+                        const triggerRect = currentDynamicPirilloTrigger.getBoundingClientRect();
+                        const modalContentRect = modalContent.getBoundingClientRect();
+                        let top = triggerRect.bottom - modalContentRect.top + 5;
+                        let left = triggerRect.left - modalContentRect.left;
+
+                        const menuWidth = pirilloMenu.offsetWidth || parseFloat(getComputedStyle(pirilloMenu).minWidth) || 200;
+                        if (left + menuWidth > modalContentRect.width - 10) {
+                            left = modalContentRect.width - menuWidth - 10;
+                        }
+                        left = Math.max(10, left);
+
+                        pirilloMenu.style.left = `${left}px`;
+                        pirilloMenu.style.top = `${top}px`;
+                    }
+                });
+                if(DEBUG_MODE) console.log("UI.init completed, calling showInitialModal");
+                this.showInitialModal();
+            },
+            showInitialModal() {
+                if(DEBUG_MODE) console.log("UI.showInitialModal called");
+                gameModal.classList.add('active');
+                gameTitleOverlay.classList.add('visible-with-modal');
+                modalTitleMain.style.display = 'none';
+
+                modalDescriptionMain.innerHTML = `Fight for the user (like <span id="chris-pirillo-trigger" class="pirillo-link">@ChrisPirillo</span>)!`;
+
+                modalDescriptionMain.style.display = 'block';
+                startGameButton.textContent = "Start Game";
+                pirilloMenu.style.display = 'none';
+
+                if (!gameStarted && !modalGridAnimationId) {
+                    modalGridAnimationTime = 0;
+                    modalBackgroundAnimationLoop();
+                }
+                if (DEBUG_MODE) console.log("Initial modal shown.");
+            },
+            showModalGameOver(winnerMessage) {
+                if(DEBUG_MODE) console.log("UI.showModalGameOver called");
+                gameModal.classList.add('active');
+                gameTitleOverlay.classList.add('visible-with-modal');
+                modalTitleMain.style.display = 'block';
+                modalTitleMain.textContent = winnerMessage;
+                modalDescriptionMain.style.display = 'none';
+                pirilloMenu.style.display = 'none';
+                startGameButton.textContent = "Play Again";
+
+                if (!gameStarted && !modalGridAnimationId) {
+                    modalGridAnimationTime = 0;
+                    modalBackgroundAnimationLoop();
+                }
+                if (DEBUG_MODE) console.log("Game over modal shown:", winnerMessage);
+            },
+            hideModal() {
+                if(DEBUG_MODE) console.log("UI.hideModal called");
+                gameModal.classList.remove('active');
+                gameTitleOverlay.classList.remove('visible-with-modal');
+                startGameButton.blur();
+                pirilloMenu.style.display = 'none';
+                if (modalGridAnimationId) {
+                    cancelAnimationFrame(modalGridAnimationId);
+                    modalGridAnimationId = null;
+                }
+                if(!gameStarted){
+                    Renderer.drawGridBackground();
+                }
+                if (DEBUG_MODE) console.log("Modal hidden.");
+            },
+            showGameUI() { gameUIContainer.classList.add('visible-game-over'); },
+            hideGameUI() { gameUIContainer.classList.remove('visible-game-over'); }
+        };
+
+        // --- Game Initialization ---
+        if(DEBUG_MODE) console.log("Document loaded, starting game initialization.");
+        Core.fetchInitialColors();
+        Core.initCanvas();  // Initialize canvas dimensions first
+        UI.init();          // Then initialize UI which shows the modal
+        if (DEBUG_MODE) console.log("Game Initialized and UI.init called.");
+      });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CQ4D3VQ3L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1CQ4D3VQ3L');
+    </script>
+    </body>
+</html>
