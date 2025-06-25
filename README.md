@@ -5,4 +5,6 @@ Total immersion! Challenge cunning CPUs in Neon Cycles, a thrilling TRON-inspire
 
 ---
 
+![Screenshot](https://github.com/ChrisPirillo/neon-cycles/blob/main/assets/screenshot.png?raw=true)
+
 * Try it now: [https://pirillo.com/arcade/neon-cycles.html](https://pirillo.com/arcade/neon-cycles.html)
